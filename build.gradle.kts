@@ -16,6 +16,14 @@ taboolib {
     install("expansion-command-helper")
     classifier = null
     version = "6.0.10-39"
+    description {
+        contributors {
+            name("Siooraen")
+        }
+        dependencies {
+            name("MythicMobs")
+        }
+    }
 }
 
 repositories {
@@ -28,6 +36,8 @@ dependencies {
     compileOnly("ink.ptms.core:v11902:11902-minimize:universal")
     compileOnly(kotlin("stdlib"))
     compileOnly(fileTree("libs"))
+
+    taboo("ink.ptms:um:1.0.0-beta-20")
 }
 
 tasks.withType<JavaCompile> {
