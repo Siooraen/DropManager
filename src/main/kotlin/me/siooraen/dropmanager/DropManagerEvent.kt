@@ -7,8 +7,6 @@ import me.siooraen.dropmanager.DropManager.removeItem
 import org.bukkit.entity.Player
 import org.bukkit.event.entity.EntityPickupItemEvent
 import org.bukkit.event.player.PlayerDropItemEvent
-import org.bukkit.event.player.PlayerKickEvent
-import org.bukkit.event.player.PlayerQuitEvent
 import taboolib.common.platform.event.SubscribeEvent
 
 /**
@@ -44,15 +42,5 @@ object DropManagerEvent {
     @SubscribeEvent
     fun e(e: PlayerDropItemEvent) {
         e.itemDrop.itemStack.addItem(e.player)
-    }
-
-    @SubscribeEvent
-    fun e(e: PlayerQuitEvent) {
-        PlayerLeaveServerEvent(e.player).call()
-    }
-
-    @SubscribeEvent
-    fun e(e: PlayerKickEvent) {
-        PlayerLeaveServerEvent(e.player).call()
     }
 }
