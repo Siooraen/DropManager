@@ -1,7 +1,7 @@
 package me.siooraen.dropmanager
 
 import me.siooraen.dropmanager.DropManager.conf
-import taboolib.common.platform.ProxyPlayer
+import org.bukkit.command.CommandSender
 import taboolib.common.platform.command.CommandBody
 import taboolib.common.platform.command.CommandHeader
 import taboolib.common.platform.command.mainCommand
@@ -11,7 +11,7 @@ import taboolib.module.chat.colored
 
 /**
  * @author Siooraen
- * @since 2023/1/11 21:42
+ * @since 2023/1/12 18:35
  */
 @CommandHeader(name = "DropManager", aliases = ["dm"], permission = "*")
 object DropManagerCommand {
@@ -23,7 +23,7 @@ object DropManagerCommand {
 
     @CommandBody
     val reload = subCommand {
-        execute<ProxyPlayer> { sender, _, _ ->
+        execute<CommandSender> { sender, _, _ ->
             conf.reload()
             sender.sendMessage("&c[DropManager] &7重载成功.".colored())
         }
