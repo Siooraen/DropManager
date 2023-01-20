@@ -1,6 +1,7 @@
 package me.siooraen.dropmanager.dropprotect
 
 import ink.ptms.um.event.MobDeathEvent
+import me.siooraen.dropmanager.DropManager
 import me.siooraen.dropmanager.utils.getLong
 import me.siooraen.dropmanager.utils.getString
 import me.siooraen.dropmanager.utils.set
@@ -28,7 +29,7 @@ object DropProtect {
         val owner = this.getString("dm.owner")
         val time = this.getLong("dm.time")
         val type = this.getString("dm.type")
-        val protectTime = DropType.valueOf(type).time
+        val protectTime = DropType.getProtectTime(DropType.get(type))
         if (owner == player.name && time + protectTime >= System.currentTimeMillis()) {
             return true
         }
