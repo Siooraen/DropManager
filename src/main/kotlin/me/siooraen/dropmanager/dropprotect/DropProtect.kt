@@ -9,6 +9,7 @@ import org.bukkit.entity.Player
 import org.bukkit.event.entity.EntityPickupItemEvent
 import org.bukkit.event.player.PlayerDropItemEvent
 import org.bukkit.inventory.ItemStack
+import taboolib.common.platform.event.EventPriority
 import taboolib.common.platform.event.SubscribeEvent
 
 /**
@@ -63,7 +64,7 @@ object DropProtect {
         }
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     fun e(e: PlayerDropItemEvent) {
         e.itemDrop.itemStack.addItem(e.player, DropType.DROP)
     }
