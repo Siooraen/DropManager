@@ -32,12 +32,12 @@ repositories {
 
 dependencies {
     compileOnly("ink.ptms:nms-all:1.0.0")
-    compileOnly("ink.ptms.core:v11902:11902-minimize:mapped")
-    compileOnly("ink.ptms.core:v11902:11902-minimize:universal")
+    compileOnly("ink.ptms.core:v11701:11701-minimize:mapped")
+    compileOnly("ink.ptms.core:v11701:11701-minimize:universal")
     compileOnly(kotlin("stdlib"))
     compileOnly(fileTree("libs"))
 
-    taboo("ink.ptms:um:1.0.0-beta-20")
+    taboo("ink.ptms:um:1.0.0-beta-25")
 }
 
 tasks.withType<JavaCompile> {

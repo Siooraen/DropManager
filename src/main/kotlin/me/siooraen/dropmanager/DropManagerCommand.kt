@@ -1,7 +1,6 @@
 package me.siooraen.dropmanager
 
 import me.siooraen.dropmanager.DropManager.conf
-import me.siooraen.dropmanager.dropnotice.DropNotice.read
 import org.bukkit.command.CommandSender
 import taboolib.common.platform.command.CommandBody
 import taboolib.common.platform.command.CommandHeader
@@ -26,7 +25,6 @@ object DropManagerCommand {
     val reload = subCommand {
         execute<CommandSender> { sender, _, _ ->
             conf.reload()
-            read()
             sender.sendMessage("&c[DropManager] &7重载成功.".colored())
         }
     }

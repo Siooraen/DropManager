@@ -1,7 +1,6 @@
 package me.siooraen.dropmanager.dropprotect
 
 import ink.ptms.um.event.MobDeathEvent
-import me.siooraen.dropmanager.DropManager
 import me.siooraen.dropmanager.utils.getLong
 import me.siooraen.dropmanager.utils.getString
 import me.siooraen.dropmanager.utils.set
@@ -51,11 +50,11 @@ object DropProtect {
         }
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
     fun e(e: EntityPickupItemEvent) {
         if (e.entity is Player) {
-            val player = e.entity as Player
             val item = e.item.itemStack
+            val player = e.entity as Player
             if (item.checkItem(player)) {
                 item.set("dm", null)
             } else {
@@ -64,8 +63,12 @@ object DropProtect {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.LOWEST)
+    @SubscribeEvent
     fun e(e: PlayerDropItemEvent) {
-        e.itemDrop.itemStack.addItem(e.player, DropType.DROP)
+        val item = e.itemDrop.itemStack
+        if (item.getString("ITEM_DROP") == "1") {
+            return
+        }
+        item.addItem(e.player, DropType.DROP)
     }
 }

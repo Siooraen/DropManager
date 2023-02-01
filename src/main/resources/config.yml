@@ -2,8 +2,3 @@
 protect-time:
   mob: 11
   drop: 6
-
-notice-nbt-node: "display"
-# NBT内容忽略颜色符号
-notice-list:
-  - "example@{item} example msg"

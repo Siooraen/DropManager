@@ -14,6 +14,6 @@ enum class DropType {
         fun get(str: String) = if (str == "MOB") MOB else DROP
 
         fun getProtectTime(type: DropType) =
-            if (type == MOB) conf.getLong("protect-time.mob") else conf.getLong("protect-time.drop")
+            if (type == MOB) conf.getLong("protect-time.mob") * 1000 else conf.getLong("protect-time.drop") * 1000
     }
 }
