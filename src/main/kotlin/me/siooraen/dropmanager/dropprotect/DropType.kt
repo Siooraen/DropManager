@@ -4,7 +4,7 @@ import me.siooraen.dropmanager.DropManager.conf
 
 /**
  * @author Siooraen
- * @since 2023/1/11 22:23
+ * @since 2023/3/3 21:15
  */
 enum class DropType {
 
@@ -14,6 +14,6 @@ enum class DropType {
         fun get(str: String) = if (str == "MOB") MOB else DROP
 
         fun getProtectTime(type: DropType) =
-            if (type == MOB) conf.getLong("protect-time.mob") * 1000 else conf.getLong("protect-time.drop") * 1000
+            if (type == MOB) conf.getLong("protect-time.mob") * 1000 else null
     }
 }

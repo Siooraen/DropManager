@@ -10,6 +10,7 @@ import org.bukkit.event.player.PlayerDropItemEvent
 import org.bukkit.inventory.ItemStack
 import taboolib.common.platform.event.EventPriority
 import taboolib.common.platform.event.SubscribeEvent
+import java.lang.System.currentTimeMillis
 
 /**
  * @author Siooraen
@@ -18,22 +19,21 @@ import taboolib.common.platform.event.SubscribeEvent
 object DropProtect {
 
     private fun ItemStack.addItem(player: Player, type: DropType) {
-        val owner = player.name
-        val time = System.currentTimeMillis()
-        this.set("dm.owner", owner)
-        this.set("dm.time", time)
-        this.set("dm.type", type.toString())
+        this.set("dm.owner", player.name)
+        if (type == DropType.MOB) {
+            this.set("dm.time", currentTimeMillis())
+        }
     }
 
     private fun ItemStack.checkItem(player: Player): Boolean {
         val owner = this.getString("dm.owner")
-        val time = this.getLong("dm.time")
         val type = this.getString("dm.type")
-        val protectTime = DropType.getProtectTime(DropType.get(type))
-        if (owner == player.name && time + protectTime >= System.currentTimeMillis()) {
+        val protectTime = DropType.getProtectTime(DropType.get(type)) ?: return false
+        val time = this.getLong("dm.time")
+        if (owner == player.name && time + protectTime >= currentTimeMillis()) {
             return true
         }
-        if (time + protectTime < System.currentTimeMillis()) {
+        if (time + protectTime < currentTimeMillis()) {
             return true
         }
         return false
